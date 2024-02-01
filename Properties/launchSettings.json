@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SmartSmsParser": {
+      "commandName": "Project",
+      "commandLineArgs": "\"E:\\sms\\report.json\"\r\n\"E:\\sms\\result.xlsx\""
+    }
+  }
+}
