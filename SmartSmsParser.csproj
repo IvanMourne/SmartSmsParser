@@ -11,14 +11,4 @@
     <PackageReference Include="NPOI" Version="2.6.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Excel\Template\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Excel\Template\Paymaster import template.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

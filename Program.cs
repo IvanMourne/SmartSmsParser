@@ -4,19 +4,23 @@
     {
         public static void Main(string[] args)
         {
-            if (args.Length != 2)
+            var jsonName = "report.json";
+            if (args.Length == 0 && !File.Exists(jsonName))
             {
-                throw new ArgumentException("Add arguments: <input.json> <output.xlsx>");
+                Console.WriteLine("Specify full path to report.json or place file in working directory");
+                return;
             }
-            if (!args[0].EndsWith(".json"))
+            if (args.Length > 1)
             {
-                throw new ArgumentException("Incorrect json path");
+                Console.WriteLine("Too many arguments");
+                return;
             }
-            if (!args[1].EndsWith(".xlsx")) 
+            if (args.Length == 1 && !args[0].EndsWith(".json") && !args[0].EndsWith(".xlsx"))
             {
-                throw new ArgumentException("Incorrect xlsx path");
+                Console.WriteLine("Incorrect file extension");
+                return;
             }
-           Parse(args[0], args[1]);
+            Parse(args.Length == 1 ? args[0] : jsonName);
         }
     }
 }

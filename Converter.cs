@@ -13,13 +13,13 @@
                 var transaction = new Paymaster.Transaction
                 {
                     AccountName = ParseAccountName(operation),
-                    Category = operation.Category,
+                    Category = _categoryDictionary.TryGetValue(operation.Category, out string value) ? value : operation.Category,
                     Comment = operation.SmsText,
                     Currency = operation.TransactionCurrency,
                     Date = DateOnly.FromDateTime(operation.Date.Date),
                     Sum = operation.TransactionAmount,
                     Type = operation.TransactionAmount > 0 ? "Income" : "Expense",
-                    Tag = string.Empty
+                    Tag = operation.Tags == null || operation.Tags.Count == 0 ? string.Empty : string.Join(", ", operation.Tags)
                 };
 
                 if (UpdateTransactions(result, transaction))
@@ -88,5 +88,19 @@
                 existedAccount.Sum = balance;
             }
         }
+
+        private static readonly Dictionary<string, string> _categoryDictionary = new()
+        {
+            { "Транспорт", "Общественный транспорт"},
+            { "Дом", "Жилье" },
+            { "Техника", "Вещи" },
+            { "Здоровье", "Медицина" },
+            { "Питомцы", "Домашние животные" },
+            { "Софт", "" },
+            { "Алкоголь", "Развлечения" },
+            { "Другое", "Разовые расходы" },
+            { "Музыка", "Развлечения" },
+            { "Cash back", "Проценты" },
+        };
     }
 }

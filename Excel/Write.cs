@@ -7,11 +7,13 @@ namespace SmartSmsParser
     {
         public static void Write(Paymaster paymaster)
         {
-            using var fs = new FileStream("result.xlsx", FileMode.Create, FileAccess.Write);
+            var fileName = "result.xlsx";
+            using var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             var workbook = new XSSFWorkbook();
             AddTransactions(workbook, paymaster.Transactions);
             AddAccounts(workbook, paymaster.Accounts);
             workbook.Write(fs);
+            Console.WriteLine($"Output: {Path.GetFullPath(fileName)}");
         }
 
         private static void AddTransactions(XSSFWorkbook workbook, List<Paymaster.Transaction> transactions )
@@ -71,5 +73,24 @@ namespace SmartSmsParser
                 rowIndex++;
             }
         }
+
+        public static readonly string[] TransactionHeaders =
+        [
+            "Date",
+            "Category",
+            "Account name",
+            "Sum",
+            "Currency",
+            "Type",
+            "Tag",
+            "Comment text"
+        ];
+
+        public static readonly string[] AccountHeaders =
+        [
+            "Account name",
+            "Sum",
+            "Currency"
+        ];
     }
 }

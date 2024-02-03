@@ -5,7 +5,7 @@ namespace SmartSmsParser
     public class SmartSms
     {
         [JsonPropertyName("operations")]
-        public Operation[] Operations {  get; set; }
+        public List<Operation> Operations {  get; set; }
 
         public class Operation
         {
@@ -47,6 +47,9 @@ namespace SmartSmsParser
 
             [JsonPropertyName("category")]
             public string Category { get; set; }
+
+            [JsonPropertyName("tags")]
+            public List<string> Tags { get; set; }
 
             [JsonPropertyName("affectStatistics")]
             public bool AffectStatistics { get; set; }
