@@ -15,6 +15,7 @@
 ### Запуск
 Положить import.json в папку с SmartSmsParser.exe или указать путь к json как агрумент
 > `SmartSmsParser.exe import.json`
+
 В результате будет сформирован файл result.xlsx
 
 ### Системные требования
